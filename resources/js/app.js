@@ -6,6 +6,7 @@ import Base from './base'
 import Routes from './routes';
 import store from './store/index'
 
+import '@mdi/font/css/materialdesignicons.css'
 import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 
@@ -26,5 +27,9 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-    vuetify: new Vuetify()
+    vuetify: new Vuetify({
+        icons: {
+            iconfont: 'mdi', // default - only for display purposes
+        },
+    })
 });

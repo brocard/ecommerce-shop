@@ -8,6 +8,14 @@ export default {
         current: null
     },
 
+    getters: {
+        productIsInStock () {
+            return (product) => {
+                return product.inventory > 0
+            }
+        }
+    },
+
     mutations: {
         setProducts (state, products) {
             // update products

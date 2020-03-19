@@ -17,6 +17,7 @@
                     <p class="text-gray-700">{{ product.description }}</p>
                     <button
                         class="btn bg-blue-600 text-white hover:bg-blue-700"
+                        @click="addProductToCart(product)"
                     >Add to Cart +</button>
                 </div>
             </div>
@@ -42,6 +43,7 @@
         methods: {
             ...mapActions({
                 setupCurrent: 'products/setupAssociated',
+                addProductToCart: 'cart/addProductToCart'
             })
         }
     }
