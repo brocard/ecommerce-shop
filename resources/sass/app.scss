@@ -1,1 +1,19 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// TailwindCSS
+@import "~tailwindcss/base";
+@import "custom";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+//Vuetify
+@import '~vuetify/dist/vuetify.min.css';
+
+
