@@ -13,6 +13,15 @@ export default [
         component: require('./screens/Checkout').default
     }, {
         path: '/admin',
-        name: 'admin-page'
+        name: 'admin-home',
+        component: require('./screens/Admin/Home').default
+    }, {
+        path: '/admin/users',
+        name: 'admin-users',
+        component: require('./screens/Admin/Users').default
+    }, {
+        path: '/admin/products',
+        name: 'admin-products',
+        component: require('./screens/Admin/Products').default
     }
 ]

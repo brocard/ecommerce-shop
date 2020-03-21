@@ -49,13 +49,14 @@
             <button
                 class="btn bg-red-400 text-white font-semibold btn-block"
                 @click="emptyCart"
+                v-if="!loading"
             >Clear Cart</button>
         </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import {mapState, mapGetters, mapActions} from 'vuex'
+    import {mapState, mapActions, mapMutations} from 'vuex'
 
     export default {
         data() {
@@ -67,7 +68,8 @@
         mounted() {
             this.loading = true;
             this.fetchProducts()
-                .then(() => setTimeout(() => this.loading = false, 500))
+                .then(() => setTimeout(() => this.loading = false, 500));
+            this.clearCurrent()
         },
 
         computed: {
@@ -77,6 +79,10 @@
         },
 
         methods: {
+            ...mapMutations({
+               clearCurrent: 'products/clearCurrentProduct'
+            }),
+
             ...mapActions({
                 fetchProducts: 'products/fetchProducts',
                 addProductToCart: 'cart/addProductToCart',

@@ -1,15 +1,19 @@
+import { EMPTY_CART } from "./mutation-types";
+
 export default {
     namespaced: true,
 
     state: {
-        items: []
+        items: [],
+        checkoutStatus: false
     },
 
     getters: {
         cartProducts (state, getters, rootState, rootGetters) {
             return state.items.map(cartItem => {
-                const product = rootState.products.items.find(product => product.id === cartItem.id);
+                const product = rootState.products.items.find(item => item.id === cartItem.id);
                 return {
+                    id: product.id,
                     title: product.name,
                     price: product.price,
                     quantity: cartItem.quantity
@@ -34,6 +38,10 @@ export default {
             })
         },
 
+        removeProduct(state, product) {
+            state.items.splice(state.items.indexOf(product), 1);
+        },
+
         incrementItemQuantity (state, cartItem) {
             cartItem.quantity++
         },
@@ -42,12 +50,17 @@ export default {
             state.checkoutStatus = status
         },
 
-        emptyCart (state) {
-            state.items = []
+        [EMPTY_CART] (state) {
+            state.items = [];
+            state.checkoutStatus = false
         }
     },
 
     actions: {
+        clearCheckoutStatus({ commit }) {
+            commit('setCheckoutStatus', false)
+        },
+
         clearProducts({ commit }) {
             commit('emptyCart')
         },
@@ -59,6 +72,11 @@ export default {
             } else {
                 commit('incrementItemQuantity', cartItem)
             }
+            commit('setCheckoutStatus', true);
         },
+
+        removeProductFromCart({ commit }, product) {
+            commit('removeProduct', product)
+        }
     }
 }
