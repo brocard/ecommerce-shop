@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="flex">
+    <div class="row">
+        <div class="w-full">
             <h2>Product Page</h2>
         </div>
         <div class="row" v-if="product">
@@ -40,6 +40,12 @@
 <script>
     import {mapActions, mapState} from 'vuex'
     export default {
+        data() {
+            return {
+                rating: 3.8,
+            }
+        },
+
         mounted() {
             window.scrollTo(500, 0);
             this.setupCurrent(this.$route.params.id)

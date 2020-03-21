@@ -4,12 +4,8 @@
             <div
                 class="text-xl font-thin px-3 py-2 bg-gray-300 flex justify-between"
             >
-                <div>
-                    <v-icon>mdi-card-account-details-outline</v-icon> Users
-                </div>
-                <div>
-                    <v-btn color="primary" dark class="mb-2" @click="newUserDialog">New Item</v-btn>
-                </div>
+                <div><v-icon>mdi-card-account-details-outline</v-icon> Users</div>
+                <div><v-btn color="primary" dark class="mb-2" @click="newUserDialog">New Item</v-btn></div>
             </div>
             <v-data-table
                 :headers="headers"
