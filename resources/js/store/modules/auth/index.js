@@ -1,7 +1,7 @@
+import Ls from '@/services/ls'
 import mutations from "./mutations";
 import * as getters from './getters'
 import * as actions from './actions'
-import Ls from '@/services/ls'
 
 const initialState = {
     token: Ls.get('auth.token'),

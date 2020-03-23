@@ -156,7 +156,7 @@
                                 <v-col
                                     cols="12"
                                 >
-                                    <v-btn block color="success"> <span class="font-bold mr-3">PAY</span> ${{ total }} USD</v-btn>
+                                    <v-btn block color="success"> <span class="font-bold mr-3">PAY</span> ${{ total.toFixed(2) }} USD</v-btn>
                                 </v-col>
                             </v-row>
                         </v-col>

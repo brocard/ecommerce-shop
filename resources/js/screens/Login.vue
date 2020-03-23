@@ -55,7 +55,7 @@
 <script>
     import { mapActions } from 'vuex'
     import { validationMixin } from 'vuelidate'
-    const { required, email, minLength } = require('vuelidate/lib/validators')
+    const { required, email, minLength } = require('vuelidate/lib/validators');
 
     export default {
         mixins: [validationMixin],

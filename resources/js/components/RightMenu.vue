@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import {mapActions, mapGetters, mapState} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
 
     export default {
         mounted() {},
