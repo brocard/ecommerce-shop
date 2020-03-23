@@ -26,6 +26,7 @@
                     <v-btn
                         icon
                         color="indigo"
+                        @click="redirectToProduct(item)"
                     >
                         <v-icon>mdi-square-edit-outline</v-icon>
                     </v-btn>
@@ -71,7 +72,7 @@
         mounted() {
             this.loading = true;
             this.fetchProducts()
-                .then(() => this.loading = false)
+                .then(() => setTimeout(() => this.loading = false, 500))
         },
 
         computed: {
@@ -84,6 +85,10 @@
             ...mapActions({
                 fetchProducts: 'products/fetchProducts'
             }),
+
+            redirectToProduct(item) {
+                this.$router.push({ name: 'products.edit', params: { id: item.id }})
+            }
         }
     }
 </script>

@@ -69,7 +69,7 @@
             this.loading = true;
             this.fetchProducts()
                 .then(() => setTimeout(() => this.loading = false, 500));
-            this.clearCurrent()
+            this.clearCurrent();
         },
 
         computed: {

@@ -2,19 +2,21 @@
 
 use Illuminate\Http\Request;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('auth')->group( function () {
+    Route::post('login', 'Auth\AccessTokensController@login')->name('login');
+    Route::middleware('auth:api')->post('logout', 'Auth\AccessTokensController@logout');
 });
 
 Route::namespace('Api')->group(function () {
-    Route::get('/products', 'ProductsController@index')->name('products.index');
-    Route::get('/products/{product}', 'ProductsController@show')->name('products.show');
-    Route::post('/products', 'ProductsController@create')->name('products.create');
-    Route::post('/products/{product}', 'ProductsController@store')->name('products.store');
+    Route::resource('users', 'UsersController', ['only' => ['show']]);
+    Route::resource('products', 'ProductsController', ['only' => ['index', 'show']]);
 
-    Route::prefix('admin')->group( function (){
-        Route::resource('users', 'UsersController', ['except' => ['create']]);
-        Route::resource('products', 'ProductsController', ['except' => ['create']]);
+    Route::middleware('auth:api')->group( function () {
+        Route::get('/user', function (Request $request) { return $request->user(); });
+
+        Route::resource('users', 'UsersController', ['except' => ['create', 'show']]);
+        Route::resource('products', 'ProductsController', ['except' => ['create', 'index', 'show']]);
     });
-
 });
+
+

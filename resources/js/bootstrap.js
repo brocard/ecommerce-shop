@@ -1,4 +1,6 @@
 window._ = require('lodash');
+import Ls from './services/ls'
+import store from './store/index.js'
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -22,6 +24,24 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.axios.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    const AUTH_TOKEN = Ls.get('auth.token');
+
+    if (AUTH_TOKEN) {
+        config.headers.common['Authorization'] = `Bearer ${AUTH_TOKEN}`
+    }
+    return config
+}, function (error) {
+    // Do something with request error
+    return Promise.reject(error)
+});
+
+/**
+ * Global plugins
+ */
+window.toastr = require('toastr');
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

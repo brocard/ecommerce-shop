@@ -5,3 +5,11 @@ h3 {@apply text-lg;}
 a.link {
     @apply text-blue-600 underline;
 }
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s
+}
+
+.fade-enter, .fade-leave-active {
+    opacity: 0
+}

@@ -3,23 +3,16 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Base from './base'
-import Routes from './routes';
+import router from './routes';
 import store from './store/index'
 
 import '@mdi/font/css/materialdesignicons.css'
-import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
+
+Vue.use(Vuetify);
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.use(Vuetify);
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-    mode: 'history',
-    routes: Routes
-});
 
 Vue.mixin(Base);
 

@@ -48,6 +48,122 @@
                 </template>
             </v-data-table>
         </div>
+
+        <div class="w-full mt-8">
+            <v-card class="elevation-1 py-0">
+                <v-card-text>
+                    <v-row>
+                        <v-col
+                            cols="12"
+                            md="6"
+                            class="px-6"
+                        >
+                            <v-row>
+                                <v-col
+                                    cols="12"
+                                >
+                                    <v-text-field
+                                        v-model="checkout.name"
+                                        :counter="100"
+                                        label="Name"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+
+                            <v-row>
+                                <v-col
+                                    cols="12"
+                                >
+                                    <v-text-field
+                                        v-model="checkout.address"
+                                        label="Address"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+
+                            <v-row>
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                >
+                                    <v-text-field
+                                        v-model="checkout.state"
+                                        label="State"
+                                    ></v-text-field>
+                                </v-col>
+
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                >
+                                    <v-select
+                                        v-model="checkout.country"
+                                        :items="countryItems"
+                                        label="Country"
+                                    ></v-select>
+                                </v-col>
+                            </v-row>
+
+                        </v-col>
+
+                        <v-col
+                            cols="12"
+                            md="6"
+                            class="bg-gray-200 px-6"
+                        >
+                            <v-row>
+                                <v-col
+                                    cols="12"
+                                    md="12"
+                                >
+                                    <v-text-field
+                                        v-model="checkout.cc_number"
+                                        class="font-semibold"
+                                        placeholder="Card Number"
+                                        label="Credit Card Number"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                >
+                                    <v-text-field
+                                        v-model="checkout.cc_expiration_date"
+                                        class="font-semibold"
+                                        placeholder="MM/YY"
+                                        label="Exp. Date"
+                                    ></v-text-field>
+                                </v-col>
+
+                                <v-col
+                                    cols="12"
+                                    md="6"
+                                >
+                                    <v-text-field
+                                        v-model="checkout.cc_ccv"
+                                        class="font-semibold"
+                                        label="CCV"
+                                        placeholder="CCV"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+
+                            <v-row
+                                class="mt-10"
+                            >
+                                <v-col
+                                    cols="12"
+                                >
+                                    <v-btn block color="success"> <span class="font-bold mr-3">PAY</span> ${{ total }} USD</v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </div>
     </div>
 </template>
 
@@ -56,6 +172,19 @@
     export default {
         data() {
             return {
+                checkout: {
+                    name: '',
+                    address: '',
+                    state: '',
+                    country: '',
+                    cc_number: '',
+                    cc_expiration_date: '',
+                    cc_ccv: ''
+                },
+                countryItems: [
+                    'Angola', 'Canada', 'United State', 'Mexico',
+                ],
+
                 headers:[
                     {
                         text: 'Product',

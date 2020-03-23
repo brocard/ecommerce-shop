@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
+use App\Repositories\ProductRepositoryInterface;
 
 class ProductsController extends Controller
 {
+    private $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection(Product::all());
+        return ProductResource::collection($this->productRepository->all());
     }
 
     /**
@@ -38,7 +45,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $entry = Product::findorFail($id);
+        $entry = $this->productRepository->findById($id);
 
         return response()->json(['entry' => new ProductResource($entry)]);
     }
@@ -63,8 +70,6 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $entry = Product::findOrFail($id);
-
-        $entry->delete();
+        $this->productRepository->delete($id);
     }
 }

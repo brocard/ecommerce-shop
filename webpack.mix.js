@@ -1,6 +1,17 @@
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
 
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            '@': path.resolve(
+                __dirname,
+                'resources/js'
+            )
+        }
+    }
+});
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management

@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
             'short' => Str::limit($this->description),
             'description' => $this->description,
             'price' => $this->price,
+            'status' => $this->status,
         ];
     }
 }

@@ -4,8 +4,8 @@
             <div
                 class="text-xl font-thin px-3 py-2 bg-gray-300 flex justify-between"
             >
-                <div><v-icon>mdi-card-account-details-outline</v-icon> Users</div>
-                <div><v-btn color="primary" dark class="mb-2" @click="newUserDialog">New Item</v-btn></div>
+                <span class="pt-2"><v-icon>mdi-card-account-details-outline</v-icon> Users</span>
+                <div><v-btn color="primary" dark class="mb-2" @click="newUserDialog">New User <v-icon>mdi-plus</v-icon></v-btn></div>
             </div>
             <v-data-table
                 :headers="headers"
@@ -71,8 +71,8 @@
 
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="blue darken-1" text @click="closeDialog">Cancel</v-btn>
-                                <v-btn color="blue darken-1" text @click="saveItem(editedUser)">Save</v-btn>
+                                <v-btn color="grey lighten-2"  @click="closeDialog">Cancel</v-btn>
+                                <v-btn color="primary" @click="saveItem(editedUser)">Save</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
@@ -118,14 +118,6 @@
                     name: '',
                     email: ''
                 },
-                nameRules: [
-                    v => !!v || 'Name is required',
-                    v => v.length <= 20 || 'Name must be less than 20 characters',
-                ],
-                emailRules: [
-                    v => !!v || 'E-mail is required',
-                    v => /.+@.+/.test(v) || 'E-mail must be valid',
-                ],
                 headers:[
                     {
                         text: 'Name',
@@ -138,6 +130,14 @@
                         value: 'actions',
                         sortable: false
                     },
+                ],
+                nameRules: [
+                    v => !!v || 'Name is required',
+                    v => v.length <= 20 || 'Name must be less than 20 characters',
+                ],
+                emailRules: [
+                    v => !!v || 'E-mail is required',
+                    v => /.+@.+/.test(v) || 'E-mail must be valid',
                 ]
             }
         },
@@ -186,7 +186,7 @@
                     //this.notify.open = true;
                     //this.notify.text = 'New user was creted...';
                 }
-                //this.closeDialog();
+                this.closeDialog();
             },
 
             closeDialog() {
