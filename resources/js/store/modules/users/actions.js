@@ -26,4 +26,4 @@ export const createUser = ({ dispatch, commit }, user) => {
             dispatch('fetchUsers')
         })
         .catch((error) => commit(types.SET_ERRORS, error.response.data.errors))
-}
+};

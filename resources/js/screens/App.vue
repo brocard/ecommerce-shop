@@ -46,17 +46,17 @@
                 </div>
             </div>
 
-            <button
+            <!--button
                 class="btn bg-red-400 text-white font-semibold btn-block"
                 @click="emptyCart"
                 v-if="!loading"
-            >Clear Cart</button>
+            >Clear Cart</button-->
         </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import {mapState, mapActions, mapMutations} from 'vuex'
+    import {mapState, mapActions} from 'vuex'
 
     export default {
         data() {
@@ -79,11 +79,8 @@
         },
 
         methods: {
-            ...mapMutations({
-               clearCurrent: 'products/clearCurrentProduct'
-            }),
-
             ...mapActions({
+                clearCurrent: 'products/clearAssociatedProduct',
                 fetchProducts: 'products/fetchProducts',
                 addProductToCart: 'cart/addProductToCart',
                 emptyCart: 'cart/clearProducts'
@@ -95,5 +92,10 @@
 <style lang="scss" scoped>
     .v-application {
         a {color: inherit !important;}
+    }
+    .card-header {
+        img {
+            max-height: 280px;
+        }
     }
 </style>

@@ -8,15 +8,15 @@ export default {
         })
     },
 
-    removeProduct(state, product) {
-        state.items.splice(state.items.indexOf(product), 1);
+    [types.REMOVE_PRODUCT](state, product) {
+        state.items = state.items.filter(p => p.id !== product.id);
     },
 
     incrementItemQuantity (state, cartItem) {
         cartItem.quantity++
     },
 
-    setCheckoutStatus (state, status) {
+    [types.SET_CHECKOUT_STATUS] (state, status) {
         state.checkoutStatus = status
     },
 

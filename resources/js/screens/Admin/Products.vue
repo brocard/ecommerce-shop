@@ -34,6 +34,7 @@
                     <v-btn
                         icon
                         color="red"
+                        @click="deleteProduct(item)"
                     >
                         <v-icon>mdi-trash-can-outline</v-icon>
                     </v-btn>
@@ -52,6 +53,9 @@
                 loading: false,
                 headers:[
                     {
+                        text: '#',
+                        value: 'id',
+                    }, {
                         text: 'Name',
                         value: 'name',
                     }, {
@@ -83,7 +87,8 @@
 
         methods: {
             ...mapActions({
-                fetchProducts: 'products/fetchProducts'
+                fetchProducts: 'products/fetchProducts',
+                deleteProduct: 'products/deleteProduct'
             }),
 
             redirectToProduct(item) {

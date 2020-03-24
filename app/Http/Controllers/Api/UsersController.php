@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
+use App\Repositories\UserRepositoryInterface;
 
 class UsersController extends Controller
 {
     protected $user;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->user = $userRepository;
     }
@@ -44,12 +44,6 @@ class UsersController extends Controller
         return response()->json(['entry' => $entry,]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function show($id)
     {
         $entry = $this->user->findById($id);
@@ -68,8 +62,8 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $entry = $this->user->findById($id);
+        $this->user->delete($id);
 
-        $entry->delete();
+        return response()->json(['success' => true], 200);
     }
 }

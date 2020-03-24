@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Product;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Repositories\ProductRepositoryInterface;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -30,11 +33,24 @@ class ProductsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $data = [];
+        $data = [
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+        ];
+
+        validator($data, [
+            'name' => 'required',
+            'email' => 'required|email'
+        ])->validate();
+
+        $entry = Product::create($data);
+
+        return response()->json(['entry' => $entry,]);
     }
 
     /**
@@ -50,26 +66,28 @@ class ProductsController extends Controller
         return response()->json(['entry' => new ProductResource($entry)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $entry = $this->productRepository->findById($id);
+
+        $entry->name = $request->input('name');
+        $entry->description = $request->input('description');
+        $entry->price = $request->input('price');
+        $entry->save();
+
+        return response()->json(['entry' => new ProductResource($entry)]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
         $this->productRepository->delete($id);
+
+        return response()->json(['success' => true], 200);
     }
 }

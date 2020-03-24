@@ -16,6 +16,8 @@ Route::namespace('Api')->group(function () {
 
         Route::resource('users', 'UsersController', ['except' => ['create', 'show']]);
         Route::resource('products', 'ProductsController', ['except' => ['create', 'index', 'show']]);
+
+        Route::post('media/{product}', 'MediaController@store')->name('media.store');
     });
 });
 
