@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
-* Vuetify v2.2.18
+* Vuetify v2.2.17
 * Forged by John Leider
 * Released under the MIT License.
 */
@@ -3411,27 +3411,27 @@ html.overflow-y-hidden{
   letter-spacing:.0125em!important
 }
 
-.v-application .subtitle-2{
-  font-size:.875rem!important;
-  font-weight:500;
-  letter-spacing:.0071428571em!important;
-  line-height:1.375rem;
+.v-application .subtitle-1{
+  font-size:1rem!important;
+  font-weight:400;
+  letter-spacing:.009375em!important;
+  line-height:1.75rem;
   font-family:Roboto,sans-serif!important
 }
 
-.v-application .subtitle-1{
-  font-size:1rem!important;
-  letter-spacing:.009375em!important;
-  line-height:1.75rem
+.v-application .subtitle-2{
+  font-weight:500;
+  letter-spacing:.0071428571em!important;
+  line-height:1.375rem
 }
 
-.v-application .body-2,.v-application .subtitle-1{
-  font-weight:400;
+.v-application .body-2,.v-application .subtitle-2{
+  font-size:.875rem!important;
   font-family:Roboto,sans-serif!important
 }
 
 .v-application .body-2{
-  font-size:.875rem!important;
+  font-weight:400;
   letter-spacing:.0178571429em!important;
   line-height:1.25rem
 }
@@ -15458,7 +15458,7 @@ html.overflow-y-hidden{
   padding-top:0
 }
 
-.v-text-field.v-input--dense:not(.v-text-field--outlined):not(.v-text-field--single-line):not(.v-select) input{
+.v-text-field.v-input--dense:not(.v-text-field--outlined):not(.v-text-field--single-line) input{
   padding:4px 0 2px
 }
 
@@ -15960,6 +15960,7 @@ html.overflow-y-hidden{
 
 .v-select:not(.v-input--is-dirty):not(.v-input--is-focused) .v-text-field__prefix{
   line-height:20px;
+  position:absolute;
   top:7px;
   transition:.3s cubic-bezier(.25,.8,.5,1)
 }
@@ -19832,7 +19833,7 @@ html.overflow-y-hidden{
   opacity:1
 }
 
-.v-input__slider.v-input--is-readonly>.v-input__control{
+.v-input__slider.v-input--is-readonly .v-input__slot{
   pointer-events:none
 }
 
@@ -22889,7 +22890,7 @@ html.overflow-y-hidden{
   transition-duration:.2s;
   transition-timing-function:cubic-bezier(.4,0,.2,1);
   will-change:transform;
-  transition-property:transform,visibility,width
+  transition-property:transform,width
 }
 
 .v-navigation-drawer:not([data-booted=true]){
@@ -23008,10 +23009,6 @@ html.overflow-y-hidden{
 
 .v-navigation-drawer--mobile{
   z-index:6
-}
-
-.v-navigation-drawer--close{
-  visibility:hidden
 }
 
 .v-navigation-drawer--is-mobile:not(.v-navigation-drawer--close),.v-navigation-drawer--temporary:not(.v-navigation-drawer--close){
@@ -25652,12 +25649,6 @@ html.overflow-y-hidden{
   right:0;
   top:0;
   transition:.3s cubic-bezier(.25,.8,.5,1)
-}
-
-.v-treeview-node__root:after{
-  content:"";
-  font-size:0;
-  min-height:inherit
 }
 
 .v-treeview-node__children{
